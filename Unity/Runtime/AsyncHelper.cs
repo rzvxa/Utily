@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using System;
+using UnityEngine;
 
 namespace Utils.Unity.Runtime
 {
@@ -15,6 +17,17 @@ namespace Utils.Unity.Runtime
         {
             Task.Run(async () => await action).GetAwaiter().GetResult();
         }
-        
+
+        public static async void FireAndForget(this Task action)
+        {
+            try
+            {
+                await action;
+            }
+            catch(Exception e)
+            {
+                Debug.unityLogger.LogException(e);
+            }
+        }
     }
 }
