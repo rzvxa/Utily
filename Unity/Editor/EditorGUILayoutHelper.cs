@@ -57,5 +57,18 @@ namespace Utils.Unity.Editor
             var color = _editorColorStack.Pop();
             GUI.color = color;
         }
+
+
+        public static string Browse(string path, string name)
+        {
+            string res;
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel(name);
+            res = EditorGUILayout.TextField(path);
+            if(GUILayout.Button("..."))
+                Debug.unityLogger.Log("Browse");
+            EditorGUILayout.EndHorizontal();
+            return res;
+        }
     }
 }
