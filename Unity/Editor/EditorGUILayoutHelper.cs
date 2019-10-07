@@ -6,7 +6,12 @@ namespace Utils.Unity.Editor
 {
     public static class EditorGUILayoutHelper
     {
-        public static void PopGenericMenuAsDropDown(GUIContent label, GUIContent btnContent, GenericMenu genericMenu, Color? labelColor = null, Color? contentColor = null)
+        public static void PopGenericMenuAsDropDown
+            (GUIContent label,
+             GUIContent btnContent,
+             GenericMenu genericMenu,
+             Color? labelColor = null,
+             Color? contentColor = null)
         {
             var defaultColor = GUI.contentColor;
 
@@ -41,7 +46,8 @@ namespace Utils.Unity.Editor
 
         public static bool RectClicked(int mouseButton, Rect rect)
         {
-            return (Event.current.type == EventType.MouseDown && Event.current.button == mouseButton && rect.Contains(Event.current.mousePosition));
+            return (Event.current.type == EventType.MouseDown
+                    && Event.current.button == mouseButton && rect.Contains(Event.current.mousePosition));
         }
 
         private static readonly Stack<Color> _editorColorStack = new Stack<Color>();
@@ -66,7 +72,10 @@ namespace Utils.Unity.Editor
             EditorGUILayout.PrefixLabel(name);
             res = EditorGUILayout.TextField(path);
             if(GUILayout.Button("..."))
-                Debug.unityLogger.Log("Browse");
+                res = EditorUtility.OpenFolderPanel
+                    ("Source of Resources",
+                     EditorApplication.applicationPath,
+                     "");
             EditorGUILayout.EndHorizontal();
             return res;
         }
