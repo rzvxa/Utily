@@ -28,9 +28,7 @@ namespace Utils.Unity.Runtime.Networking
             else _continuation = continuation;
         }
 
-        private void OnRequestCompleted(AsyncOperation obj)
-        {
-            _continuation.Invoke();
-        }
+        private void OnRequestCompleted(AsyncOperation obj) =>
+            _continuation?.Invoke();
     }
 }
