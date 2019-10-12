@@ -7,10 +7,13 @@ namespace Utils.Unity.Runtime.Networking
 {
     public static class RequestHelper
     {
-        public static async Task<DownloadHandler> DownloadAsync(string url, DownloadHandler handler = null)
+        public static Task<DownloadHandler> DownloadAsync(string url) =>
+            DownloadAsync(url, new DownloadHandlerBuffer());
+
+        public static async Task<DownloadHandler> DownloadAsync(string url, DownloadHandler handler)
         {
             if(handler is null)
-                handler = new DownloadHandlerBuffer();
+                throw new ArgumentNullException(nameof(handler));
             var req = new UnityWebRequest(url);
             req.downloadHandler = handler;
             await req.SendWebRequest();
