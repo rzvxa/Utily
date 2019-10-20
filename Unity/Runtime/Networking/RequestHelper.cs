@@ -10,7 +10,7 @@ namespace Utils.Unity.Runtime.Networking
         public static Task<DownloadHandler> DownloadAsync(string url) =>
             DownloadAsync(url, new DownloadHandlerBuffer());
 
-        public static async Task<DownloadHandler> DownloadAsync(string url, DownloadHandler handler)
+        public static async Task<DownloadHandler> DownloadAsync(string url, DownloadHandler handler, bool throwOnDownloadFailure = false)
         {
             if(handler is null)
                 throw new ArgumentNullException(nameof(handler));
@@ -20,7 +20,7 @@ namespace Utils.Unity.Runtime.Networking
             if(req.isNetworkError || req.isHttpError)
             {
                 Debug.unityLogger.LogError(nameof(RequestHelper), req.error);
-                throw new Exception(req.error);
+                if(throwOnDownloadFailure) throw new Exception(req.error);
             }
             return req.downloadHandler;
         }
