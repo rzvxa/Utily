@@ -7,6 +7,27 @@ namespace Utils.Unity.Runtime
         public const float Tolerance = 0.1f;
         public static Vector3 ToV3(this Vector2 @this, float z = 0) => new Vector3(@this.x, @this.y, z);
 
+        public static Vector3Int ToV3I(this Vector3 @this) =>
+            new Vector3Int((int)@this.x, (int)@this.y, (int)@this.z);
+
+        public static Vector3Int SetY(this Vector3Int @this, int y)
+        {
+            @this.y = y;
+            return @this;
+        }
+
+        public static Vector3Int SetX(this Vector3Int @this, int x)
+        {
+            @this.x = x;
+            return @this;
+        }
+
+        public static Vector3Int SetZ(this Vector3Int @this, int z)
+        {
+            @this.z = z;
+            return @this;
+        }
+
         public static Vector2 ToV2(this Vector3 @this) => new Vector2(@this.x, @this.y);
 
         public static Vector2Int ToV2I(this Vector2 @this) => new Vector2Int((int)@this.x, (int)@this.y);
@@ -14,7 +35,7 @@ namespace Utils.Unity.Runtime
         public static Vector2Int MoveTowards(this Vector2Int @this, Vector2Int other, float a)
         {
             var m = Vector2.MoveTowards(@this, other, a);
-            return new Vector2Int((int) m.x , (int) m.y);
+            return new Vector2Int((int)m.x, (int)m.y);
         }
 
         public static Vector2 MoveTowards(this Vector2 @this, Vector2 other, float a)
