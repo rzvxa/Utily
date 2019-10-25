@@ -28,6 +28,24 @@ namespace Utils.Unity.Runtime
             return @this;
         }
 
+        public static Vector3 SetY(this Vector3 @this, float y)
+        {
+            @this.y = y;
+            return @this;
+        }
+
+        public static Vector3 SetX(this Vector3 @this, float x)
+        {
+            @this.x = x;
+            return @this;
+        }
+
+        public static Vector3 SetZ(this Vector3 @this, float z)
+        {
+            @this.z = z;
+            return @this;
+        }
+
         public static Vector2 ToV2(this Vector3 @this) => new Vector2(@this.x, @this.y);
 
         public static Vector2Int ToV2I(this Vector2 @this) => new Vector2Int((int)@this.x, (int)@this.y);
