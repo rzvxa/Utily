@@ -21,6 +21,7 @@ namespace Utils.Unity.Runtime.Networking
             {
                 Debug.unityLogger.LogError(nameof(RequestHelper), req.error);
                 if(throwOnDownloadFailure) throw new Exception(req.error);
+                else return null;
             }
             return req.downloadHandler;
         }
