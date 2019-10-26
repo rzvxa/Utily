@@ -64,6 +64,21 @@ namespace Utils.Unity.Editor
             GUI.color = color;
         }
 
+        private static readonly Stack<bool> _editorActivityStack = new
+            Stack<bool>();
+
+        public static void BeginActivityGroup(bool isActive)
+        {
+            _editorActivityStack.Push(GUI.enabled);
+            GUI.enabled = isActive;
+        }
+
+        public static void EndActivityGroup()
+        {
+            var enabled = _editorActivityStack.Pop();
+            GUI.enabled = enabled;
+        }
+
 
         public static string Browse(string path, string name)
         {

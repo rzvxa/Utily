@@ -28,24 +28,41 @@ namespace Utils.Unity.Runtime
             return @this;
         }
 
-        public static Vector2 ToV2(this Vector3 @this) => new Vector2(@this.x, @this.y);
+        public static Vector2 ToV2(this Vector3 @this) => new
+            Vector2(@this.x, @this.y);
 
-        public static Vector2Int ToV2I(this Vector2 @this) => new Vector2Int((int)@this.x, (int)@this.y);
+        public static Vector2Int ToV2I(this Vector3 @this) =>
+            ToV2I((Vector2)@this);
 
-        public static Vector2Int MoveTowards(this Vector2Int @this, Vector2Int other, float a)
+        public static Vector2Int ToV2I(this Vector2 @this) => new
+            Vector2Int((int)@this.x, (int)@this.y);
+
+        public static Vector2Int MoveTowards(
+                this Vector2Int @this,
+                Vector2Int other,
+                float a)
         {
             var m = Vector2.MoveTowards(@this, other, a);
             return new Vector2Int((int)m.x, (int)m.y);
         }
 
-        public static Vector2 MoveTowards(this Vector2 @this, Vector2 other, float a)
+        public static Vector2 MoveTowards(
+                this Vector2 @this,
+                Vector2 other,
+                float a)
         {
             return Vector2.MoveTowards(@this, other, a);
         }
 
-        public static float Remap(float value, float oldMin, float oldMax, float newMin, float newMax)
+        public static float Remap(
+                float value,
+                float oldMin,
+                float oldMax,
+                float newMin,
+                float newMax)
         {
-            return (value - oldMin) / (oldMax - oldMin) * (newMax - newMin) + newMin;
+            return (value - oldMin) / (oldMax - oldMin) *
+                (newMax - newMin) + newMin;
         }
 
         public static Vector2 RadianToVector2(float radian) => new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
