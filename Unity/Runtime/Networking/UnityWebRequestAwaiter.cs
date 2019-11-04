@@ -23,9 +23,10 @@ namespace Utils.Unity.Runtime.Networking
 
         public void OnCompleted(Action continuation)
         {
+            if(!IsCompleted || continuation is null)
+                _continuation = continuation;
             if(IsCompleted)
                 OnRequestCompleted(null);
-            else _continuation = continuation;
         }
 
         private void OnRequestCompleted(AsyncOperation obj) =>
