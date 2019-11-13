@@ -7,6 +7,9 @@ namespace Utils.Unity.Runtime
         public const float Tolerance = 0.1f;
         public static Vector3 ToV3(this Vector2 @this, float z = 0) => new Vector3(@this.x, @this.y, z);
 
+        public static Vector3 ToV3(this Vector2Int @this, float z = 0) => @this
+            .ToV2().ToV3();
+
         public static Vector3Int ToV3I(this Vector3 @this) =>
             new Vector3Int((int)@this.x, (int)@this.y, (int)@this.z);
 
@@ -29,6 +32,9 @@ namespace Utils.Unity.Runtime
         }
 
         public static Vector2 ToV2(this Vector3 @this) => new
+            Vector2(@this.x, @this.y);
+
+        public static Vector2 ToV2(this Vector2Int @this) => new
             Vector2(@this.x, @this.y);
 
         public static Vector2Int ToV2I(this Vector3 @this) =>
