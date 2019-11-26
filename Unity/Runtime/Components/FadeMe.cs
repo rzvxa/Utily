@@ -58,12 +58,14 @@ namespace Utils.Unity.Runtime.Components
         public void FadeIn()
         {
             StopCoroutine(nameof(FadeRoutine));
+            Alpha = 0;
             StartCoroutine(FadeRoutine(1, FadeInSpeed));
         }
 
         public void FadeOut()
         {
             StopCoroutine(nameof(FadeRoutine));
+            Alpha = 1;
             StartCoroutine(FadeRoutine(0, FadeOutSpeed));
         }
 
