@@ -53,12 +53,23 @@ namespace Utils.Unity.Runtime
 
             protected set
             {
-                if(m_Instance == null || value == null || m_Instance == value)
+                if (m_Instance == null || value == null || m_Instance == value)
                     m_Instance = value;
                 else
                     Debug.LogError($"Singleton<{typeof(T).Name}> : Trying to set instance value while has been already!");
-                
+
             }
+        }
+
+        /// <summary>
+        /// It will restart the singletone and let it find new instance or
+        /// Create new ones after destroying it.
+        /// </summary>
+        public static void Restart()
+        {
+            m_ShuttingDown = false;
+            m_Lock = new object();
+            m_Instance = null;
         }
 
 
