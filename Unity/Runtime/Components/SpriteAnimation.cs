@@ -15,7 +15,7 @@ namespace Utils.Unity.Runtime.Components
 
         private void Awake() => _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        private void Start()
+        private void OnEnable()
         {
             if(_autoPlay)
                 Animate();
