@@ -89,6 +89,17 @@ namespace Utils.Unity.Runtime
                 (newMax - newMin) + newMin;
         }
 
+        public static double Remap(
+                double value,
+                double oldMin,
+                double oldMax,
+                double newMin,
+                double newMax)
+        {
+            return (value - oldMin) / (oldMax - oldMin) *
+                (newMax - newMin) + newMin;
+        }
+
         public static Vector2 RadianToVector2(float radian) => new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
 
         public static Vector2 DgreeToVector2(float degree) => RadianToVector2(degree * Mathf.Deg2Rad);
