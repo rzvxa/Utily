@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
@@ -86,13 +87,51 @@ namespace Utils.Unity.Editor
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel(name);
             res = EditorGUILayout.TextField(path);
-            if(GUILayout.Button("..."))
+            if (GUILayout.Button("..."))
                 res = EditorUtility.OpenFolderPanel
                     ("Source of Resources",
                      EditorApplication.applicationPath,
                      "");
             EditorGUILayout.EndHorizontal();
             return res;
+        }
+
+        public static void Button(string text, Action onClick)
+        {
+            if (GUILayout.Button(text))
+                onClick?.Invoke();
+        }
+
+        public static void LinkField(string link) => LinkField(link, link);
+
+
+
+        public static void LinkField(string label, string link) =>
+            LinkField(label, () => Application.OpenURL(link));
+
+
+        public static void LinkField(string label, Action onClick)
+        {
+            var linkStyle = new GUIStyle(EditorStyles.label);
+            linkStyle.wordWrap = false;
+            linkStyle.normal.textColor = new Color(0x00 / 255f,
+                                                   0x78 / 255f,
+                                                   0xDA / 255f,
+                                                   1f);
+            linkStyle.stretchWidth = false;
+            var position = GUILayoutUtility.GetRect(new GUIContent(label), linkStyle);
+
+            Handles.BeginGUI();
+            Handles.color = linkStyle.normal.textColor;
+            Handles.DrawLine(new Vector3(position.xMin, position.yMax),
+                             new Vector3(position.xMax, position.yMax));
+            Handles.color = Color.white;
+            Handles.EndGUI();
+
+            EditorGUIUtility.AddCursorRect(position, MouseCursor.Link);
+
+            if (GUI.Button(position, label, linkStyle))
+                onClick?.Invoke();
         }
     }
 }
