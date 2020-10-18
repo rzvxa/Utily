@@ -77,5 +77,23 @@ namespace Utils.Unity.Editor.AddressableAssets
             }
             return false;
         }
+
+        public static AddressableAssetEntry ForceAddressable(Object obj)
+        {
+            if (obj == null)
+                throw new ArgumentNullException("obj is null");
+
+            var aaSettings = AddressableAssetSettingsDefaultObject.Settings;
+
+            if (aaSettings == null)
+                throw new InvalidOperationException("AddressableAssetSettingsDefaultObject does not have any Settings");
+
+            if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(obj, out var guid, out long localId))
+                return aaSettings.CreateOrMoveEntry(guid, aaSettings.DefaultGroup);
+
+            else
+                throw new ArgumentException("Could not find guid and local Id of obj");
+
+        }
     }
 }
