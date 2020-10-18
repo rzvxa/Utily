@@ -11,8 +11,9 @@ namespace Utils.Unity.Editor
     {
         public static T GetActualObjectForSerializedProperty<T>(this SerializedProperty @this,
                                                                 FieldInfo field,
-                                                                ref string label)
+                                                                out string label)
         {
+            label = "";
             try
             {
                 if (@this == null || field == null)
