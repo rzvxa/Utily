@@ -11,9 +11,5 @@ namespace Utils.Unity.Runtime.Strings
             te.SelectAll();
             te.Copy();
         }
-
-        public static string Format(this string @this, params object[] args) =>
-            string.Format(@this, args);
-
     }
 }
