@@ -1,9 +1,9 @@
 {
     "name": "Utils.Unity.Editor",
     "references": [
-        "Utils.Unity.Serialization"
+        "Utils.Unity.Serialization",
+        "Utils"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor"
     ],
@@ -12,5 +12,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

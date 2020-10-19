@@ -3,6 +3,8 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 
+using Utils.SystemTypes;
+
 namespace Utils.Unity.Editor
 {
     public static class EditorGUILayoutHelper
@@ -132,6 +134,19 @@ namespace Utils.Unity.Editor
 
             if (GUI.Button(position, label, linkStyle))
                 onClick?.Invoke();
+        }
+
+        public static T SelectionGrid<T>(T selectedOption, int xCount, GUIStyle style = null)
+            where T : Enum, IConvertible
+        {
+            if (style is null)
+                style = GUI.skin.GetStyle("Button");
+            // NOTE: boxing upboxing is needed for converting int to T and vise versa
+            selectedOption = (T)(object) GUILayout.SelectionGrid((int)(object) selectedOption,
+                                                         Enums.GetNames<T>(),
+                                                         xCount,
+                                                         style);
+            return selectedOption;
         }
     }
 }
