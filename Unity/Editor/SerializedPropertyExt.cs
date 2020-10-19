@@ -9,7 +9,7 @@ namespace Utils.Unity.Editor
 {
     public static class SerializedPropertyExt
     {
-        public static T GetActualObjectForSerializedProperty<T>(this SerializedProperty @this,
+        public static T GetActualValue<T>(this SerializedProperty @this,
                                                                 FieldInfo field,
                                                                 out string label)
         {
