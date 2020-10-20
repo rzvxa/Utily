@@ -127,5 +127,12 @@ namespace Utils.Unity.Runtime
             return newPoint.x >= rect.xMin && newPoint.x
                 <= rect.xMax && newPoint.y >= rect.yMin && newPoint.y <= rect.yMax;
         }
+
+        public static int AbsMod(int value, int mod)
+        {
+            mod = mod < 0 ? -mod : mod;
+            var r = value % mod;
+            return (r < 0 ? r + mod : r);
+        }
     }
 }
