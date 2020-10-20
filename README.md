@@ -25,6 +25,11 @@ Here is a list of more important parts of Utily
   * MemberInfo Extentions
   * PropertyInfo Extentions
   * Type Extentions
+* Security
+  * Cryptography
+* SystemTypes
+  * Enums
+  * String extentions
 * Threading
   * Threading Utility
 * UTime
