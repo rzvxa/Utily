@@ -58,5 +58,8 @@ namespace Utils.Linq
                 }
             }
         }
+
+        public static T ElementAtOrDefault<T>(this IList<T> source, int index, T @default) =>
+            index >= 0 && index < source.Count ? source[index] : @default;
     }
 }
