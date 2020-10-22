@@ -77,9 +77,12 @@ Here is a list of more important parts of Utily
       * UnityWebRequest Extentions
     * Profiling
       * Profiler Helper
+    * Threading
+      * Async Helper
+      * Async MonoBehaviour
+      * Async ScriptableObject
     * UI
       * RectTransform Helper
-    * Async Helper
     * CoExecute (Manage Coroutine Execution and Execute without MonoBehaviour)
     * GameObject Extentions
     * Math (It was the main reason i've created Utily)
