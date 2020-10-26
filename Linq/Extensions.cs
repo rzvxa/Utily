@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using System.Threading.Tasks;
+
 namespace Utils.Linq
 {
     public static class Extensions
@@ -27,6 +29,17 @@ namespace Utils.Linq
                 var item = source[index];
                 action(item, index);
             }
+        }
+
+        public static async Task<T> FirstOrDefaultAsync<T>(this IEnumerable<T> source,
+                                                           Func<T, Task<bool>> predicate)
+        {
+            foreach (var item in source)
+            {
+                if (await predicate(item))
+                    return item;
+            }
+            return default;
         }
 
         public static bool IsNullOrEmpty<T>(this T[] source) => source == null || source.Length == 0;
