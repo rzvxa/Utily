@@ -134,5 +134,9 @@ namespace Utils.Unity.Runtime
             var r = value % mod;
             return (r < 0 ? r + mod : r);
         }
+
+        public static int ToInt(this bool @this) => @this ? 1 : 0;
+
+        public static float ToFloat(this bool @this) => @this ? 1f : 0f;
     }
 }
